@@ -38,6 +38,10 @@ function createMarkup() {
 function markupImages(image) {
   gallery.insertAdjacentHTML('beforeend', insertImages(image));
   showButton();
+  window.scrollTo({
+    top: document.body.clientHeight,
+    behavior: 'smooth',
+  });
 }
 
 function showButton() {
@@ -51,8 +55,4 @@ function hideButton() {
 buttonMore.addEventListener('click', () => {
   apiService.pageIncrement();
   createMarkup();
-  window.scrollTo({
-    top: window.pageYOffset,
-    behavior: 'smooth',
-  });
 });
