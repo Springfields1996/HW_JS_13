@@ -31,17 +31,17 @@ function createMarkup() {
   apiService
     .fetchImage()
     .then(images =>
-      images.length ? markupImages(images) : alert('We can`t find images'),
+      images.length
+        ? markupImages(images)
+        : (alert('We can`t find images'), hideButtons()),
     );
 }
 
 function markupImages(image) {
   gallery.insertAdjacentHTML('beforeend', insertImages(image));
   showButton();
-  window.scrollTo({
-    top: document.body.clientHeight,
-    behavior: 'smooth',
-  });
+  apiService.scrollWindow();
+  _.debounce(apiService.autoscrollPage(), 500);
 }
 
 function showButton() {
